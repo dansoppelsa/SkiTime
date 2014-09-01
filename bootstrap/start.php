@@ -27,9 +27,12 @@ $app = new Illuminate\Foundation\Application;
 $env = $app->detectEnvironment(array(
 
 	'local' => [ 'dan*' , 'soup*' ],
-  'staging' => [ 'preview.soupbowl.ca' ]
+  'staging' => [ 'coffeerun.ca' ]
 
 ));
+
+
+
 
 
 /*
@@ -70,5 +73,26 @@ require $framework.'/Illuminate/Foundation/start.php';
 | from the actual running of the application and sending responses.
 |
 */
+
+switch( $env ) {
+
+  case 'local':
+    define('PAYPAL_URL' , 'https://www.sandbox.paypal.com/cgi-bin/webscr');
+    define('PAYPAL_EMAIL' , 'ewgallacher-facilitator@gmail.com');
+    define( 'PAYPAL_IPN_NOTIFICATION_URL' , url('/') . '/payment-completed' );
+    break;
+
+  case 'staging':
+    define('PAYPAL_URL' , 'https://www.sandbox.paypal.com/cgi-bin/webscr');
+    define('PAYPAL_EMAIL' , 'ewgallacher-facilitator@gmail.com');
+    define( 'PAYPAL_IPN_NOTIFICATION_URL' , url('/') . '/payment-completed' );
+    break;
+
+  default:
+    define('PAYPAL_URL' , 'https://www.paypal.com/cgi-bin/webscr');
+    define('PAYPAL_EMAIL' , 'ewgallacher@gmail.com');
+    define( 'PAYPAL_IPN_NOTIFICATION_URL' , url('/') . '/payment-completed' );
+    break;
+}
 
 return $app;

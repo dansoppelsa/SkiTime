@@ -18,6 +18,7 @@ Route::get( 'login', 'AuthController@login' );
 Route::post( 'login', 'AuthController@postLogin' );
 Route::get( 'logout', 'AuthController@logout' );
 
+Route::post( 'users' , 'UsersController@store' );
 
 /**
  * User Account Routes
@@ -36,4 +37,17 @@ Route::group( [ 'prefix' => 'account' , 'before' => 'auth' ] , function()
 
         } );
     });
+});
+
+
+Route::any('payment-completed', function()
+{
+  $paymentStatus = Input::get('payment_status');
+
+  if($paymentStatus !== 'Completed')
+    return false;
+
+  $userID = Input::get('custom');
+  $user = \Times\Users\User::find($userID);
+  $user->markAsPaid();
 });

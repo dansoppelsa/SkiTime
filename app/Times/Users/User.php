@@ -4,13 +4,14 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 use Times\Core\Entity;
 use Eloquent;
+use Times\Core\Exceptions\PresenterNotFoundException;
 
 
 class User extends Entity implements UserInterface, RemindableInterface
 {
     protected $table = 'users';
-    protected $hidden = ['password'];
-    protected $fillable = ['first_name', 'last_name', 'email', 'paid'];
+    protected $hidden = [];
+    protected $fillable = ['first_name', 'last_name', 'email', 'paid', 'password'];
     protected $visible = ['first_name', 'last_name', 'email', 'paid'];
 
     protected $presenter = 'Times\Users\UserPresenter';
@@ -30,6 +31,17 @@ class User extends Entity implements UserInterface, RemindableInterface
   {
     return [ 'created_at' , 'updated_at' ];
   }
+
+    public function isPaid()
+    {
+      return $this->paid == 1;
+    }
+
+    public function markAsPaid()
+    {
+      $this->paid = 1;
+      $this->save();
+    }
 
 
 /** Interface Functions */
@@ -53,5 +65,22 @@ class User extends Entity implements UserInterface, RemindableInterface
     {
         return $this->email;
     }
+
+
+
+  public function getRememberToken()
+  {
+    return $this->remember_token;
+  }
+
+  public function setRememberToken($value)
+  {
+    $this->remember_token = $value;
+  }
+
+  public function getRememberTokenName()
+  {
+    return 'remember_token';
+  }
 
 }

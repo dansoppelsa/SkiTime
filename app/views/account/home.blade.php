@@ -10,15 +10,20 @@
 
     <div class="col-sm-5 well">
 
+      @if( Auth::user()->isPaid() )
         <a class="btn btn-primary" href="/account/add-racer"><i class="glyphicon glyphicon-plus-sign"></i> Add Racer</a>
 
-      <h2>Racers</h2>
+        <h2>Racers</h2>
 
-      <ul>
-      @foreach( Auth::user()->racers as $racer )
-        <li><a href="/account/racer/{{ $racer->present()->slug }}">{{ $racer->present()->fullName }}</a></li>
-      @endforeach
-      </ul>
+        <ul>
+        @foreach( Auth::user()->racers as $racer )
+          <li><a href="/account/racer/{{ $racer->present()->slug }}">{{ $racer->present()->fullName }}</a></li>
+        @endforeach
+        </ul>
+      @else
+        <p>Our records indicate that you have not yet paid for the <strong>SkiTime</strong> service.</p>
+        @include('partials.paypal-form')
+      @endif
 
     </div>
 

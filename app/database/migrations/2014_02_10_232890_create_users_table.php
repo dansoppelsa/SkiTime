@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration {
             $table->string('password');
             $table->string('first_name', 100);
             $table->string('last_name', 100);
+            $table->string('remember_token', 100);
             $table->boolean('paid')->default(false);
             $table->timestamps();
 		});
