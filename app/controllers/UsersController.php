@@ -37,13 +37,24 @@ class UsersController extends \BaseController {
 	{
 	  $userCreator = new Times\Users\UserCreator();
 
-    if( ! $userCreator->create( Input::all() ) )
+    if( ! $user = $userCreator->create( Input::all() ) )
       return Redirect::to( '/sign-up' )
         ->withFlashMessage( 'Errors with input.' . $userCreator->getErrorList() )
         ->withInput();
 
+    $verificationCode = new \Times\Users\VerificationCode();
+
+    $user->verification_code = $verificationCode->generateUnique();
+    $user->verified = '0';
+    $user->save();
+
+    // Send the email
+    $mailer = new \Times\Mailers\VerifyAccountMailer($user);
+    $mailer->send();
+
+
     return Redirect::to( '/login' )
-      ->withFlashMessage( 'User Created' );
+      ->withFlashMessage( 'User Account Created. YOU ARE NOT DONE YET! Please CHECK YOUR EMAIL for a verification message in order to verify your account.' );
 	}
 
 	/**
@@ -89,5 +100,22 @@ class UsersController extends \BaseController {
 	{
 		//
 	}
+
+
+
+  public function verifyAccount($verificationCode)
+  {
+    $user = Times\Users\User::where('verification_code', '=' , $verificationCode)->first();
+
+    if( ! $user )
+      return Redirect::to('/');
+
+    $user->verified = 1;
+    $user->save();
+
+    return View::make( 'public-site.verify-account' )->with([
+      'user' => $user
+    ]);
+  }
 
 }

@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration {
             $table->string('last_name', 100);
             $table->string('remember_token', 100);
             $table->boolean('paid')->default(false);
+            $table->boolean('verified')->default(false);
+            $table->string('verification_code');
             $table->timestamps();
 		});
 	}

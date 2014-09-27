@@ -4,10 +4,11 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.2.*"
+		"laravel/framework": "4.2.*",
+        "guzzlehttp/guzzle": "4.2.2"
 	},
     "require-dev": {
-        "way/generators": "dev-master",
+        "way/generators": "2.6.1",
         "fzaninotto/faker": "v1.3.0"
     },
 	"autoload": {

@@ -20,6 +20,8 @@ Route::get( 'logout', 'AuthController@logout' );
 
 Route::post( 'users' , 'UsersController@store' );
 
+Route::get( 'verify-account/{verificationCode}' , 'UsersController@verifyAccount' );
+
 /**
  * User Account Routes
  */
@@ -51,3 +53,8 @@ Route::any('payment-completed', function()
   $user = \Times\Users\User::find($userID);
   $user->markAsPaid();
 });
+
+
+
+
+

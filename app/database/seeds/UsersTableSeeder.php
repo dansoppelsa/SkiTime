@@ -18,19 +18,21 @@ class UsersTableSeeder extends Seeder {
       "first_name" => 'Dan',
       "last_name" => 'Soppelsa',
       "paid" => 1,
+      "verified" => 1,
       "created_at" => $createdAt,
       "updated_at" => $createdAt
     ]);
 
-    DB::table('users')->insert([
-      "email" => 'ewgallacher@gmail.com',
-      "password" => Hash::make('wiiwiiwii'),
-      "first_name" => 'Ewan',
-      "last_name" => 'Gallacher',
-      "paid" => 1,
-      "created_at" => $createdAt,
-      "updated_at" => $createdAt
-    ]);
+//    DB::table('users')->insert([
+//      "email" => 'ewgallacher@gmail.com',
+//      "password" => Hash::make('wiiwiiwii'),
+//      "first_name" => 'Ewan',
+//      "last_name" => 'Gallacher',
+//      "paid" => 1,
+//      "verified" => 1,
+//      "created_at" => $createdAt,
+//      "updated_at" => $createdAt
+//    ]);
 
 		foreach(range(1, 10) as $index)
 		{
@@ -44,6 +46,7 @@ class UsersTableSeeder extends Seeder {
         "first_name" => $faker->firstName,
         "last_name" => $faker->lastName,
         "paid" => $paid,
+        "verified" => 1,
         "created_at" => $createdAt,
         "updated_at" => $createdAt
 			]);
