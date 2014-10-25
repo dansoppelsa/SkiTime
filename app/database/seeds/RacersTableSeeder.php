@@ -57,6 +57,14 @@ class RacersTableSeeder extends Seeder {
                 "user_id" => $userID
                     ]);
 		}
+
+        DB::table('racers')->insert([
+            "first_name" => 'Finn',
+            "last_name" => 'Gallacher',
+            "dob" => '2007-07-15',
+            "home_ski_hill" => 'Chicopee',
+            "user_id" => '2'
+        ]);
 	}
 
 

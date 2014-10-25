@@ -13,19 +13,19 @@ class RacesTableSeeder extends Seeder {
 
       $races = [
         [
-          'ski_hill' => DB::table('ski_hills')->orderByRaw('RAND()')->first()->name,
-          'date' => $faker->dateTimeBetween( '-3 months' , '-1 month' ),
-          'racer_id' => $racer->id
+            'ski_hill' => DB::table('ski_hills')->orderByRaw('RAND()')->first()->name,
+            'date' => $faker->dateTimeBetween( '-3 months' , '-1 month' ),
+            'racer_id' => $racer->id
         ],
         [
-          'ski_hill' => DB::table('ski_hills')->orderByRaw('RAND()')->first()->name,
-          'date' => $faker->dateTimeBetween( '-3 months' , '-1 month' ),
-          'racer_id' => $racer->id
+            'ski_hill' => DB::table('ski_hills')->orderByRaw('RAND()')->first()->name,
+            'date' => $faker->dateTimeBetween( '-3 months' , '-1 month' ),
+            'racer_id' => $racer->id
         ],
         [
-          'ski_hill' => DB::table('ski_hills')->orderByRaw('RAND()')->first()->name,
-          'date' => $faker->dateTimeBetween( '-3 months' , '-1 month' ),
-          'racer_id' => $racer->id
+            'ski_hill' => DB::table('ski_hills')->orderByRaw('RAND()')->first()->name,
+            'date' => $faker->dateTimeBetween( '-3 months' , '-1 month' ),
+            'racer_id' => $racer->id
         ],
       ];
 

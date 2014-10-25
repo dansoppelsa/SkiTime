@@ -16,6 +16,7 @@ class CreateRacesTable extends Migration {
 			$table->increments('id');
 			$table->string('ski_hill');
 			$table->date('date');
+            $table->unsignedInteger('finishing_place');
 			$table->unsignedInteger('racer_id');
             $table->foreign('racer_id')->references('id')->on('racers');
 		});

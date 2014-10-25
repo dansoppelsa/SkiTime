@@ -39,6 +39,9 @@ Route::group( [ 'prefix' => 'account' , 'before' => 'auth' ] , function()
 
         Route::get( '{racerId}/add-race' , 'RacesController@create');
         Route::post( '{racerId}/add-race' , 'RacesController@store');
+
+        Route::get( '{racerId}/race/{raceId}' , 'RacesController@show');
+        Route::post( '{racerId}/race/{raceId}' , 'RacesController@update');
     });
 });
 

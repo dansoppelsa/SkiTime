@@ -34,4 +34,8 @@ class Race extends Entity
       return [ 'date' ];
     }
 
+    public function hasTimes()
+    {
+        return $this->times->count() > 0;
+    }
 }

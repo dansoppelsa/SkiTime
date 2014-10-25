@@ -11,6 +11,8 @@ class Time extends Entity
 
     public $presenter = 'Times\Time\TimePresenter';
 
+    public $timestamps = false;
+
     protected $validationRules = [
         'time' => 'required',
         'race_id' => 'required'

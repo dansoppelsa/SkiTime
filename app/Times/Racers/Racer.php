@@ -28,7 +28,7 @@ class Racer extends Entity
 
     public function races()
     {
-      return $this->hasMany( 'Times\Races\Race' );
+      return $this->hasMany( 'Times\Races\Race' )->orderBy('date', 'ASC');
     }
 
     public function getDates()

@@ -52,9 +52,15 @@ class RacesController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($racerId, $raceId)
 	{
+        $race = Times\Races\Race::find($raceId);
+        $racer = Times\Racers\Racer::find($racerId);
 
+        return View::make( 'races.show' )->with([
+            'race' => $race,
+            'racer' => $racer
+        ]);
 	}
 
 	/**
@@ -76,7 +82,35 @@ class RacesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+        $race = Times\Races\Race::find(Input::get('race_id'));
+
+        if( $race->hasTimes() ) {
+
+            $time1 = $race->times->get(0);
+            $time1->time = Input::get('run_1');
+            $time1->save();
+
+            $time2 = $race->times->get(1);
+            $time2->time = Input::get('run_2');
+            $time2->save();
+        }
+        else {
+            $time1 = new \Times\Times\Time();
+            $time1->time = Input::get('run_1');
+            $time1->race_id = $race->id;
+            $time1->save();
+
+            $time2 = new \Times\Times\Time();
+            $time2->time = Input::get('run_2');
+            $time2->race_id = $race->id;
+            $time2->save();
+        }
+
+        $race->finishing_place = Input::get('finishing_place');
+        $race->save();
+
+		return Redirect::to( '/account/racer/' . $race->racer_id . '/race/' . $race->id )
+            ->withFlashMessage('Race Times saved.');
 	}
 
 	/**

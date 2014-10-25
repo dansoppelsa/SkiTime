@@ -28,7 +28,7 @@
         @if( $racer->races->count() > 0 )
             <ul>
                 @foreach( $racer->races as $race )
-                    <li><a href="#">{{ $race->present()->skiHill }} - <em>{{ $race->present()->date }}</em></a></li>
+                    <li><a href="/account/racer/{{ $racer->id }}/race/{{ $race->id }}">{{ $race->present()->skiHill }} - <em>{{ $race->present()->date }}</em></a></li>
                 @endforeach
             </ul>
         @else

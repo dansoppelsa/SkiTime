@@ -23,16 +23,16 @@ class UsersTableSeeder extends Seeder {
       "updated_at" => $createdAt
     ]);
 
-//    DB::table('users')->insert([
-//      "email" => 'ewgallacher@gmail.com',
-//      "password" => Hash::make('wiiwiiwii'),
-//      "first_name" => 'Ewan',
-//      "last_name" => 'Gallacher',
-//      "paid" => 1,
-//      "verified" => 1,
-//      "created_at" => $createdAt,
-//      "updated_at" => $createdAt
-//    ]);
+    DB::table('users')->insert([
+      "email" => 'ewgallacher@gmail.com',
+      "password" => Hash::make('wiiwiiwii'),
+      "first_name" => 'Ewan',
+      "last_name" => 'Gallacher',
+      "paid" => 1,
+      "verified" => 1,
+      "created_at" => $createdAt,
+      "updated_at" => $createdAt
+    ]);
 
 		foreach(range(1, 10) as $index)
 		{

@@ -45,6 +45,7 @@ class RacersController extends \BaseController {
 	public function show($id)
 	{
         $racer = Times\Racers\Racer::find($id);
+
         return View::make( 'racers.show' )->with([
             'racer' => $racer
         ]);
