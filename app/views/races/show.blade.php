@@ -46,6 +46,16 @@
         {{ Form::close() }}
     </div>
 
+
+    <div class="col-sm-3">
+        <?php $text = urlencode('I just finished in position ' . $race->finishing_place . ' at the Ski Race at ' . $race->ski_hill . '.'); ?>
+        <a class="twitter-hashtag-button btn btn-info btn-lg"
+          href="https://twitter.com/intent/tweet?button_hashtag=SkiTime&text={{ $text }}"
+          data-related="twitter">
+        <img src="/img/twitter-logo.png" width="32" alt=""/> Tweet About It
+        </a>
+    </div>
+
 @stop
 
 

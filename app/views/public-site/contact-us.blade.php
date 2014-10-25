@@ -10,8 +10,7 @@
   <p>You can contact us at:</p>
 
   <ul>
-    <li><a href="mailto:contact@ski-time.ca">contact@ski-time.ca</a></li>
-    <li>(###) ###-####</li>
+    <li><a href="mailto:support@skitime.ca">support@skitime.ca</a></li>
   </ul>
 
 </div>
