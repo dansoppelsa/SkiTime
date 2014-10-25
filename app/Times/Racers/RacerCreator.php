@@ -11,5 +11,12 @@ class RacerCreator extends Creator {
     $this->entity->user_id = $userID;
   }
 
+    public function create( $data )
+    {
+        $racer = parent::create($data);
+
+        $racer->home_ski_hill = \Times\SkiHills\SkiHill::find( $data['home_ski_hill'] )->name;
+        return $racer->save();
+    }
 
 } 

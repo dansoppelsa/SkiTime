@@ -17,7 +17,7 @@
 
         <ul>
         @foreach( Auth::user()->racers as $racer )
-          <li><a href="/account/racer/{{ $racer->present()->slug }}">{{ $racer->present()->fullName }}</a></li>
+          <li><a href="/account/racer/{{ $racer->present()->id }}">{{ $racer->present()->fullName }}</a></li>
         @endforeach
         </ul>
       @else

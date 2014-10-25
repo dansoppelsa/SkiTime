@@ -11,7 +11,7 @@ class AccountController extends BaseController {
     public function addRacer()
     {
         $skiHills = [ "" => "Please Select..." ];
-        $skiHills += DB::table( 'ski_hills' )->lists('name');
+        $skiHills += DB::table( 'ski_hills' )->lists('name', 'id');
 
         return View::make( 'account.add-racer' )
             ->with('ski_hills' , $skiHills);

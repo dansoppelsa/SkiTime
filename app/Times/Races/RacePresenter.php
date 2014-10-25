@@ -17,4 +17,10 @@ class RacePresenter extends Presenter
   }
 
 
+    public function date()
+    {
+        return date( "F j, Y" , strtotime($this->entity->date));
+    }
+
+
 }

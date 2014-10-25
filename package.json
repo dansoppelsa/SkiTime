@@ -1,6 +1,6 @@
 {
   "devDependencies": {
-    "gulp": "~3.5.0",
+    "gulp": "~3.8.8",
     "gulp-notify": "~0.4.0",
     "gulp-util": "~2.2.13",
     "gulp-autoprefixer": "0.0.5",

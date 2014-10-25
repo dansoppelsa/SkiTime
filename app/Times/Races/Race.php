@@ -10,6 +10,7 @@ class Race extends Entity
     protected $fillable   = ['ski_hill', 'date', 'racer_id'];
 
     public $presenter = 'Times\Races\RacePresenter';
+    public $timestamps = false;
 
     protected $validationRules = [
         'ski_hill' => 'required',

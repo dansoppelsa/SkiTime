@@ -1,13 +1,6 @@
 <?php
 
-class RacersController extends \BaseController {
-
-  protected $model;
-
-  public function __construct( Times\Racers\Racer $racer )
-  {
-      $this->model = $racer;
-  }
+class RacesController extends \BaseController {
 
 
 	/**
@@ -27,13 +20,30 @@ class RacersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('racers.add-racer');
+        $racer = Times\Racers\Racer::find( Request::segment(3) );
+        $skiHills = [ "" => "Please Select..." ];
+        $skiHills += DB::table( 'ski_hills' )->lists('name', 'name');
+
+        return View::make('races.create')->with([
+            'racer' => $racer,
+            'skiHills' => $skiHills
+        ]);
 	}
 
 
 	public function store()
 	{
+        $input = Input::all();
 
+        $raceCreator = new Times\Races\RaceCreator();
+
+        if( ! $race = $raceCreator->create( $input ) )
+            return Redirect::to( '/account/racer/' . $input['racer_id'] )
+                ->withFlashMessage( 'Error creating race.' . $this->getErrorList() )
+                ->withInput();
+
+        return Redirect::to( '/account/racer/' . $input['racer_id'] )
+            ->withFlashMessage( 'Race added' );
 	}
 
 	/**
@@ -44,10 +54,7 @@ class RacersController extends \BaseController {
 	 */
 	public function show($id)
 	{
-        $racer = Times\Racers\Racer::find($id);
-        return View::make( 'racers.show' )->with([
-            'racer' => $racer
-        ]);
+
 	}
 
 	/**
