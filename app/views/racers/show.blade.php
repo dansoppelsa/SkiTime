@@ -6,7 +6,8 @@
    <div class="col-sm-6">
         <h1>Racer Profile</h1>
         <div class="well">
-            <table class="table table-condensed table-striped">
+            <a class="btn btn-primary btn-sm pull-right" title="Edit Racer {{ $racer->present()->fullName }}" href="/account/edit-racer/{{ $racer->id }}"><i class="glyphicon glyphicon-edit"></i> Edit Racer</a>
+            <table class="table table-condensed table-striped pull-left" style="width: auto;">
                 <tr>
                     <th>Name</th>
                     <td>{{ $racer->present()->fullName }}</td>
@@ -20,6 +21,7 @@
                     <td>{{ $racer->present()->homeSkiHill }}</td>
                 </tr>
             </table>
+            <br style="clear: both;"/>
         </div>
    </div>
    <div class="col-sm-6">
