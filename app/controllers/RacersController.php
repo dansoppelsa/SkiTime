@@ -30,7 +30,6 @@ class RacersController extends \BaseController {
 		return View::make('racers.add-racer');
 	}
 
-
 	public function store()
 	{
 
@@ -59,7 +58,14 @@ class RacersController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+	    $racer = $this->model->find($id);
+        $skiHills = [ "" => "Please Select..." ];
+        $skiHills += DB::table( 'ski_hills' )->lists('name', 'id');
+
+        return View::make('racers.edit-racer')->with([
+            'racer' => $racer,
+            'ski_hills' => $skiHills
+        ]);
 	}
 
 	/**
@@ -70,7 +76,12 @@ class RacersController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$racer = $this->model->find($id);
+        $racer->fill(Input::all());
+        $result = $racer->save();
+
+        return Redirect::to( '/account/edit-racer/' . $id )
+            ->withFlashMessage( 'Racer updated.' );
 	}
 
 	/**
