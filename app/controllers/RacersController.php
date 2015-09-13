@@ -1,5 +1,7 @@
 <?php
 
+use Times\Racers\RacerDestroyer;
+
 class RacersController extends \BaseController {
 
   protected $model;
@@ -92,7 +94,16 @@ class RacersController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$racer = Times\Racers\Racer::find($id);
+		// If the current user doesn't own the racer record...
+		if($racer->user->id !== Auth::user()->id) {
+			return Redirect::to('/account');
+		}
+
+		$racerDestroyer = new RacerDestroyer;
+		$racerDestroyer->destroy($racer);
+
+		return Redirect::to('/account')->withFlashMessage('Racer deleted: ' . $racer->present()->fullName);
 	}
 
 }

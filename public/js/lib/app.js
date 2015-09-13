@@ -9,5 +9,17 @@ $(document).ready(function(){
         });
     }
 
+    $('#delete-racer-btn').click(function(e)
+    {
+        e.preventDefault();
+        $('#racer-name-confirm').html($(this).data('racer-name'));
+        $('#confirm-delete-btn').attr('data-url', $(this).attr('href'));
+        $('#confirmModal').modal();
+    });
+
+    $('#confirm-delete-btn').click(function(e)
+    {
+        window.location = $(this).data('url');
+    });
 
 });

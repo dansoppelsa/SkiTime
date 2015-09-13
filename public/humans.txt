@@ -4,5 +4,5 @@ Site: soupbowl.ca
 Twitter: @SoupBowlWeb
 
 Your title: Ewan Gallacher
-Site: doubleblackdiamond.ca
+Site: dbdc.ca
 Twitter: @ewangallacher1

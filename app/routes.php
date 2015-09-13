@@ -34,6 +34,8 @@ Route::group( [ 'prefix' => 'account' , 'before' => 'auth' ] , function()
     Route::get('edit-racer/{id}', 'RacersController@edit');
     Route::post('edit-racer/{id}', 'RacersController@update');
 
+    Route::get('delete-racer/{id}', 'RacersController@destroy');
+
     // TODO: Add "ownership" filter for racer records
     Route::group( [ 'prefix' => 'racer' ] , function()
     {
