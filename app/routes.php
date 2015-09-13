@@ -46,6 +46,8 @@ Route::group( [ 'prefix' => 'account' , 'before' => 'auth' ] , function()
 
         Route::get( '{racerId}/race/{raceId}' , 'RacesController@show');
         Route::post( '{racerId}/race/{raceId}' , 'RacesController@update');
+
+        Route::get('{racerId}/races/{raceId}/delete', 'RacesController@destroy');
     });
 });
 

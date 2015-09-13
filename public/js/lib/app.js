@@ -13,11 +13,24 @@ $(document).ready(function(){
     {
         e.preventDefault();
         $('#racer-name-confirm').html($(this).data('racer-name'));
-        $('#confirm-delete-btn').attr('data-url', $(this).attr('href'));
-        $('#confirmModal').modal();
+        $('#confirm-delete-racer-btn').attr('data-url', $(this).attr('href'));
+        $('#confirmDeleteRacerModal').modal();
     });
 
-    $('#confirm-delete-btn').click(function(e)
+    $('#confirm-delete-racer-btn').click(function(e)
+    {
+        window.location = $(this).data('url');
+    });
+
+    $('.delete-race-btn').click(function(e)
+    {
+        e.preventDefault();
+        $('#race-name-confirm').html($(this).data('race-name'));
+        $('#confirm-delete-race-btn').attr('data-url', $(this).attr('href'));
+        $('#confirmDeleteRaceModal').modal();
+    });
+
+    $('#confirm-delete-race-btn').click(function(e)
     {
         window.location = $(this).data('url');
     });

@@ -1,5 +1,7 @@
 <?php
 
+use Times\Races\RaceDestroyer;
+
 class RacesController extends \BaseController {
 
 
@@ -113,15 +115,23 @@ class RacesController extends \BaseController {
             ->withFlashMessage('Race Times saved.');
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
+    /**
+     * @param $racerId
+     * @param $raceId
+     * @return string
+     */
+	public function destroy($racerId, $raceId)
 	{
-		//
+        $race = Times\Races\Race::find($raceId);
+        if($race->racer->user->id !== Auth::user()->id) {
+            return Redirect::to('/');
+        }
+
+        $raceDestroyer = new RaceDestroyer;
+        $raceDestroyer->destroy($race);
+
+        return Redirect::to('/account/racer/' . $racerId)
+            ->withFlashMessage('Race Deleted.');
 	}
 
 }
