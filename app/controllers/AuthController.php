@@ -1,27 +1,28 @@
 <?php
 
-class AuthController extends BaseController {
+class AuthController extends BaseController
+{
 
+    public function login()
+    {
+        return View::make('public-site.login');
+    }
 
-  public function login()
-  {
-    return View::make( 'public-site.login' );
-  }
+    public function postLogin()
+    {
+        $loggedInSuccessfully = Auth::attempt(['email' => Input::get('email'), 'password' => Input::get('password')]);
 
+        if (!$loggedInSuccessfully) {
+            return Redirect::to('/login')->withFlashMessage('Incorrect Username or Password.');
+        }
 
-  public function postLogin()
-  {
-    Auth::attempt([ 'email' => Input::get('email'), 'password' => Input::get('password') ]);
+        return Redirect::to('/account');
+    }
 
-    return Redirect::to( '/' );
-  }
+    public function logout()
+    {
+        Auth::logout();
 
-
-  public function logout()
-  {
-    Auth::logout();
-
-    return Redirect::to( '/' )->withFlashMessage('You are now logged out.');
-  }
-
-} 
+        return Redirect::to('/')->withFlashMessage('You are now logged out.');
+    }
+}
