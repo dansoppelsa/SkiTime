@@ -22,6 +22,13 @@ Route::post( 'users' , 'UsersController@store' );
 
 Route::get( 'verify-account/{verificationCode}' , 'UsersController@verifyAccount' );
 
+Route::get('forgot-password', 'AccountController@forgotPassword');
+Route::post('forgot-password', 'AccountController@postForgotPassword');
+Route::get('forgot-password-email-sent', 'AccountController@forgotPasswordEmailSent');
+
+Route::get('reset-password/{code}', 'AccountController@resetPassword');
+Route::post('reset-password', 'AccountController@postResetPassword');
+
 /**
  * User Account Routes
  */

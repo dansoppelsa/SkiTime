@@ -26,6 +26,9 @@
                 </button>
             </div>
         </form>
+
+        <p><a href="/forgot-password">Forgot your password?</a></p>
+
     </div>
 </div>
 

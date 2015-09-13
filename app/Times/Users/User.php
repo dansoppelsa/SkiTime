@@ -24,28 +24,36 @@ class User extends Entity implements UserInterface, RemindableInterface
 
     public function racers()
     {
-      return $this->hasMany('Times\Racers\Racer');
+        return $this->hasMany('Times\Racers\Racer');
     }
 
     public function getDates()
-  {
-    return [ 'created_at' , 'updated_at' ];
-  }
+    {
+        return ['created_at', 'updated_at'];
+    }
 
     public function isPaid()
     {
-      return $this->paid == 1;
+        return $this->paid == 1;
     }
 
     public function markAsPaid()
     {
-      $this->paid = 1;
-      $this->save();
+        $this->paid = 1;
+        $this->save();
     }
 
+    public function passwordResetCode()
+    {
+        return $this->hasOne('\Times\Users\PasswordResetCode');
+    }
 
-/** Interface Functions */
+    public function hasPasswordResetCode()
+    {
+        return $this->passwordResetCode !== null;
+    }
 
+    /** Interface Functions */
 
     // UserInterface
     public function getAuthIdentifier()
@@ -53,34 +61,30 @@ class User extends Entity implements UserInterface, RemindableInterface
         return $this->getKey();
     }
 
-
     public function getAuthPassword()
     {
         return $this->password;
     }
 
-
-    // RemindableInterface
+    // RemindableInterfacea
     public function getReminderEmail()
     {
         return $this->email;
     }
 
+    public function getRememberToken()
+    {
+        return $this->remember_token;
+    }
 
+    public function setRememberToken($value)
+    {
+        $this->remember_token = $value;
+    }
 
-  public function getRememberToken()
-  {
-    return $this->remember_token;
-  }
-
-  public function setRememberToken($value)
-  {
-    $this->remember_token = $value;
-  }
-
-  public function getRememberTokenName()
-  {
-    return 'remember_token';
-  }
+    public function getRememberTokenName()
+    {
+        return 'remember_token';
+    }
 
 }
