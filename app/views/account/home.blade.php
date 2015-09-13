@@ -11,8 +11,11 @@
     <div class="col-sm-5 well">
 
       @if( Auth::user()->isPaid() )
-        <a class="btn btn-primary" href="/account/add-racer"><i class="glyphicon glyphicon-plus-sign"></i> Add Racer</a>
-
+        
+        @if(Auth::user()->racers->count() < 4)
+          <a class="btn btn-primary" href="/account/add-racer"><i class="glyphicon glyphicon-plus-sign"></i> Add Racer</a>
+        @endif
+        
         <h2>Racers</h2>
 
         <ul>

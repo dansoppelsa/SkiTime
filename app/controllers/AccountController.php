@@ -22,6 +22,10 @@ class AccountController extends BaseController {
     {
         $input = Input::all();
 
+        if(Auth::user()->racers->count() >= 4){
+            return Redirect::to('https://www.youtube.com/watch?v=dQw4w9WgXcQ?autoplay=1');
+        }
+
         $racerCreator = new Times\Racers\RacerCreator();
         $racerCreator->linkToUser( Auth::user()->id );
 
