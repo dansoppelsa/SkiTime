@@ -31,6 +31,7 @@
     </div>
 
     <div class="col-sm-5 col-sm-offset-1 well">
+        <a href="/account/edit" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-edit"></i> Edit Account</a>
       <h2>Account Details</h2>
       <p>{{ Auth::user()->present()->fullName }}</p>
       <p>{{ Auth::user()->present()->email }}</p>

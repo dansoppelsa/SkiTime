@@ -116,4 +116,13 @@ class AccountController extends BaseController {
 
         return Redirect::to('/login')->withFlashMessage('Password reset successfully. Login to your account.');
     }
+
+    public function edit()
+    {
+        $user = Auth::user();
+
+        return View::make('account.edit')->with([
+            'account' => $user
+        ]);
+    }
 }

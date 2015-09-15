@@ -35,6 +35,7 @@ Route::post('reset-password', 'AccountController@postResetPassword');
 Route::group( [ 'prefix' => 'account' , 'before' => 'auth' ] , function()
 {
     Route::get( '/' , 'AccountController@home' );
+    Route::get('edit', 'AccountController@edit');
     Route::get( 'add-racer' , 'AccountController@addRacer' );
     Route::post( 'add-racer' , 'AccountController@postAddRacer' );
     Route::get( 'instructions' , 'AccountController@instructions' );
